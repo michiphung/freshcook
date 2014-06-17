@@ -30,7 +30,7 @@ class Controller_Wepayapi extends Controller_Base {
 
             $response = $wepay->request('user/register/', array(
                     'client_id' => $config->get('client_id'),
-                    'client_secret' =>   $config->('client_secret'),
+                    'client_secret' =>   $config->get('client_secret'),
                     'email'       => $chef->email,
                     'scope'         => "manage_accounts,collect_payments,view_user,preapprove_payments,manage_subscriptions,send_money",
                     'first_name'        => $chef->name,
