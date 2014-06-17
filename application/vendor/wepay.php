@@ -106,7 +106,7 @@ class WePay {
 	}
 
 	private static function getDomain() {
-		return 'http://vm.wepay.com/v2/';
+		//return 'http://vm.wepay.com/v2/';
 		if (self::$production === true) {
 			return 'https://wepayapi.com/v2/';
 		}

@@ -6,6 +6,11 @@
 </head>	
 <?php
 
+	$config = Kohana::$config->load('wepay');
+     //set API Version. Change this to the API Version you want to use.
+     $API_VERSION = "2014-01-08";
+     WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
+
 	$user = Auth::instance()->get_user();
 	$chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
 	$wepay = new WePay($chef->wepay_access_token);

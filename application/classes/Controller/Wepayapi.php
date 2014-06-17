@@ -68,10 +68,10 @@ class Controller_Wepayapi extends Controller_Base {
 
     public static function create_checkout($merchant) {
 
-        //$config = Kohana::$config->load('wepay');
+        $config = Kohana::$config->load('wepay');
         //set API Version. Change this to the API Version you want to use.
-        //$API_VERSION = "2014-01-08";
-        //WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
+        $API_VERSION = "2014-01-08";
+        WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
         $wepay = new WePay($merchant->getAccessToken());
         $response = $wepay->request('checkout/create/', array(
                     'account_id'          => $merchant->getAccountId(),
