@@ -18,6 +18,7 @@
 <p>
 <b>Food:</b>
 <? echo $food; ?>
+
 </p>
 
 <p>
@@ -28,6 +29,7 @@
 <? if ($edit) {
     echo "<a id=\"edit\" href=" . URL::base() . 'user/edit>Edit</a><p>';
     echo "<a id=\"delete\" href=" . URL::base() . 'user/delete>Delete</a>';
+
 }
 ?>
 
@@ -38,3 +40,4 @@
   <? echo $notice; ?>
 </div>
 <? } ?>
+

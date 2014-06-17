@@ -12,7 +12,7 @@ class Model_farmer extends ORM {
         try {
             $response = $wepay->request('account/create/', array(
                     'name'          => $this->name,
-                    'description'   => $this->name."'s WeFarm account",
+                    'description'   => $this->name."'s FreshCooks account",
                     'country'       => "US",
                     'currencies'    => array("USD")
                     ));

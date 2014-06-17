@@ -14,7 +14,8 @@ class Model_chef extends ORM {
                     'name'          => $this->name,
                     'description'   => $this->name."'s FreshCook account",
                     'country'       => "US",
-                    'currencies'    => array("USD")
+                    'currencies'    => array("USD"),
+                    'type'          => $this->account_type 
                     ));
         }
         catch (Exception $e) {

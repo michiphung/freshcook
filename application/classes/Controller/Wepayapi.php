@@ -48,9 +48,7 @@ class Controller_Wepayapi extends Controller_Base {
                 // $info = WePay::getToken($_GET['code'], $redirect_uri);
                 // if ($info) {
             if ($chef->createAccount($a_token)) {
-                $this->template->content = "Thank you for registering! Click here send a confirmation email! <a href=\"" . URL::base() . "\">Back<
-                    /a>";
-                   echo $chef->email;
+                $this->template->content = "Thank you! Check your email to finish registering! <a href=\"" . URL::base() . "\">Back</a>";
                 $resend_email = new WePay($a_token);    
                 $resend_email->request('user/resend_confirmation/', array());
                 } else {
@@ -68,8 +66,6 @@ class Controller_Wepayapi extends Controller_Base {
 
 
     public static function create_checkout($merchant) {
-        echo 3;
-        echo $merchant->getAccessToken();
 
         //$config = Kohana::$config->load('wepay');
         //set API Version. Change this to the API Version you want to use.
@@ -78,7 +74,7 @@ class Controller_Wepayapi extends Controller_Base {
         $wepay = new WePay($merchant->getAccessToken());
         $response = $wepay->request('checkout/create/', array(
                     'account_id'          => $merchant->getAccountId(),
-                    'short_description'   => "Purchasing ".$merchant->produce." from ".$merchant->name.".",
+                    'short_description'   => "Purchasing ".$merchant->food." from ".$merchant->name.".",
                     'type' 				  => 'goods',
                     'amount'			  => $merchant->price,
                     'mode'				  => 'iframe'

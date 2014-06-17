@@ -25,6 +25,11 @@
     <label for="chef_price"> Price</label>
     <?php echo Form::input('price','',array('id' => 'price')) ?>
   </div>
+  <div>
+  <div class="field">
+      <label for = "chef_account_type"> Account Type </label>
+      <?php echo Form::select('account_type',array( 'personal'  =>' Individual Chef', 'business' => 'Business Restaurant'), false, array('id' => 'account_type')) ?>
+</div>
   <div class="actions">
     <?php echo Form::submit('submit','Create Chef') ?>
   </div>

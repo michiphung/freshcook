@@ -8,7 +8,7 @@ class Controller_User extends Controller_Base {
 			$chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
 			$this->template->content = View::factory('user/account');
 			if (!($chef->hasAccessToken())) {
-				$this->template->content->wepay = "<b>Please confirm your account to manage your money: <p><a class='wepay-widget-button wepay-blue' href=" . URL::base() . "wepayapi>Click here to receive confirmation email!/a>";
+				$this->template->content->wepay = "<b>Please confirm your account to manage your money: <p><a class='wepay-widget-button wepay-blue' href=" . URL::base() . "wepayapi>Click here to receive confirmation email!</a>";
 				$this->template->content->token = false;
 			} else {
 				$this->template->content->wepay = '';
@@ -49,14 +49,20 @@ class Controller_User extends Controller_Base {
 				$this->template->content->token = true;
 			}
 
+			// $wepay = new WePay('DEV_a2a51fc30893a990734d16d9595f15d44a1fa2b6d83de25713d6df7c4026c06d');
+
+			// $response = $wepay->request('account/', array(
+			// 	'account_id' => 716888732
+			// 	));
+			// echo $response->state;
+
 			if (!($chef->hasAccessToken())) {
 				$this->template->content->wepay = "<b>Please confirm account to manage your money: <p><a class='wepay-widget-button wepay-blue' href=" . URL::base() . "wepayapi>Click here to create your FreshCook account</a>";
 				$this->template->content->token = false;
 			}
 			else if (!($this->template->content->edit) && $chef->hasAccountId()) {
 				$this->template->content->wepay = "<a href=" . URL::base() . "user/buy/".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
-					echo "logged in";
-					echo $id;
+
 			}
 			else {
 				$this->template->content->wepay = '';
@@ -79,7 +85,6 @@ class Controller_User extends Controller_Base {
 	}
 
 	public function action_buy() {
-		echo 1;
 		$id = Request::current()->param('id');
 		if (!isset($id)) {
 			HTTP::redirect('/');
@@ -207,6 +212,7 @@ class Controller_User extends Controller_Base {
 		$chef->kitchen = $_POST['kitchen'];
 		$chef->food = $_POST['food'];
 		$chef->price = $_POST['price'];
+		$chef->account_type = $_POST['account_type'];
 
         // Add login role
         $user->add('roles', ORM::factory('Role', array('name' => 'login')));
