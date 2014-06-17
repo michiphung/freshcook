@@ -9,6 +9,7 @@ class Controller_Wepayapi extends Controller_Base {
             // // set API Version. Change this to the API Version you want to use.
             //$API_VERSION = "2014-01-08";
             //WePay::useStaging('242', 'b5df4504c9', $API_VERSION);
+            WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
             // $base_url = URL::site(NULL, TRUE);
             // $redirect_uri = $base_url . 'wepayapi';
             // $scope = WePay::$all_scopes;
@@ -28,15 +29,13 @@ class Controller_Wepayapi extends Controller_Base {
             $wepay = new WePay(NULL);
 
             $response = $wepay->request('user/register/', array(
-                    'client_id'          => 54148,
-                    'client_secret'   => '0e7348a1f0',
                     'email'       => $chef->email,
                     'scope'    => "manage_accounts,collect_payments,view_user,preapprove_payments,manage_subscriptions,send_money",
                     'first_name' => $chef->name,
                     'last_name' => $chef->name,
                     'original_ip'=> "74.125.224.84",
                     'original_device'=> "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.102 Safari/534.13",
-                    'redirect_uri' => 'http://vm.wefarm.com/user/manage'
+                    'redirect_uri' => $base_url.'user/manage'
                 ));
 
              $a_token = $response->access_token;
