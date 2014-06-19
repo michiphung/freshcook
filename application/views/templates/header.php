@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">FreshCook</a>
+          <a class="brand" href="/freshcook/">FreshCook</a>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
               <li class="active"><a href="<? echo url::base().'user/register' ?>">Register</a></li>
