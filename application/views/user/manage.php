@@ -18,7 +18,7 @@
     $response = $wepay->request('account/get_update_uri/', array(
             'account_id' => $chef->wepay_account_id,
             'mode' => 'iframe',
-            'redirect_uri' => $base_url.'/user/register_success/'
+            //'redirect_uri' => $base_url.'/user/register_success/'
         )); 
 
         ?>
