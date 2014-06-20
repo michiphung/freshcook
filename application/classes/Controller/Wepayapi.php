@@ -66,7 +66,7 @@ class Controller_Wepayapi extends Controller_Base {
     }
 
 
-    public static function create_checkout($merchant) {
+    public static function create_checkout($credit_card_id, $merchant) {
 
         $config = Kohana::$config->load('wepay');
         //set API Version. Change this to the API Version you want to use.
