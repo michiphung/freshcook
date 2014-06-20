@@ -14,7 +14,7 @@
 
 function chargeCard(){
         var response = WePay.credit_card.create( {
-            "client_id":<?=Request::$config->get('client_id')?>,
+            "client_id":<?=$config->get('client_id')?>,
             "user_name":document.getElementById('name').value,
             "email":document.getElementById('email').value,
             "cc_number":document.getElementById('cc-number').value,
