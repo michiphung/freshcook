@@ -10,7 +10,7 @@ class Controller_Wepayapi extends Controller_Base {
             $API_VERSION = "2014-01-08";
             //WePay::useStaging('242', 'b5df4504c9', $API_VERSION);
             WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
-            $base_url = URL::site(NULL, TRUE);
+            c
             // $redirect_uri = $base_url . 'wepayapi';
             // $scope = WePay::$all_scopes;
 
@@ -49,7 +49,7 @@ class Controller_Wepayapi extends Controller_Base {
                 // $info = WePay::getToken($_GET['code'], $redirect_uri);
                 // if ($info) {
             if ($chef->createAccount($a_token)) {
-                $this->template->content = "Thank you! Check your email to finish registering! <a href=\"" . URL::base() . "\">Back</a>";
+                $this->template->content = "Thank you! Please check your email to finish registering! <a href=\"" . URL::base() . "\">Back</a>";
                 $resend_email = new WePay($a_token);    
                 $resend_email->request('user/resend_confirmation/', array());
                 } else {

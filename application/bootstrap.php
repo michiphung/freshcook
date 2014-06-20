@@ -146,10 +146,6 @@ include Kohana::find_file('vendor', 'wepay');
 Cookie::$salt = 'somerandomstring';
 
 
-Kohana::init(array(
-  'base_url'   => '/wefarm_php/',
-));
-
 Route::set('default', '(<controller>(/<action>(/<id>)))')
   ->defaults(array(
     'controller' => 'home',

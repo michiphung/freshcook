@@ -19,7 +19,7 @@ return array
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'wefarm_php',
+			'database'   => 'freshcook',
 			'username'   => 'root',
 			'password'   => FALSE,
 			'persistent' => FALSE,

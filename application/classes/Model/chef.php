@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Model that represents a farmer in WeFarm
+ * Model that represents a chef in FreshCook
  *
  */
 class Model_chef extends ORM {

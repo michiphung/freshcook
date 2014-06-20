@@ -100,7 +100,7 @@ class Controller_User extends Controller_Base {
 
         $this->template->content = View::factory('user/buy');
 		$this->template->content->checkout_uri = $checkout_uri;
-		$this->template->content->return_uri = URL::base() . '/user/account/'.$id;
+		c
 		$this->template->content->name = $chef->name;
 		$this->template->content->email = $chef->email;
 		$this->template->content->kitchen = $chef->kitchen;
@@ -115,20 +115,6 @@ class Controller_User extends Controller_Base {
 	}
 
 	public function action_charge_cc() {
-		// $validation = Validation::factory($this->request->post())
-		// 	->rule('user_name', 'not_empty')
-		// 	->rule('cc_number', 'credit_card')
-		// 	->rule('cvv', 'numeric')
-		// 	->rule('expiration_month', 'numeric')
-		// 	->rule('expiration_year', 'numeric')
-		// 	->rule('address1', 'not_empty')
-		// 	->rule('zip', 'numeric');
-
-		// if (!$validation->check()) {
-		// 	$error = $validation->errors('user');
-		// 	$this->template->content = "Your credit card registration was not valid";
-		// 	return;
-		// }
 
 		$credit_card_id = $_GET['credit_card_id'];
 		$id = $_GET['account_id'];
@@ -310,6 +296,12 @@ class Controller_User extends Controller_Base {
 			$this->template->content = "There was an error, try again";
 		}
 			
+	}
+
+	public function register_sucess(){
+		$id = Request::current()->param('id');
+		$this->template->content = View::factory('user/register_sucess');
+		$this->template->content->return_uri = URL::base() . '/user/account/'.$id;
 	}
 
 	public function action_logout(){

@@ -10,6 +10,7 @@
 	$config = Kohana::$config->load('wepay');
     //set API Version. Change this to the API Version you want to use.
     $API_VERSION = "2014-01-08";
+    $base_url = URL::site(NULL, TRUE);
     WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
 	$user = Auth::instance()->get_user();
 	$chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
@@ -17,6 +18,7 @@
     $response = $wepay->request('account/get_update_uri/', array(
             'account_id' => $chef->wepay_account_id,
             'mode' => 'iframe'
+            'redirect' => $base_url.'/user/register_sucess'
         )); 
 
         ?>
