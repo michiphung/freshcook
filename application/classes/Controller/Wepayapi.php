@@ -76,10 +76,8 @@ class Controller_Wepayapi extends Controller_Base {
         $response = $wepay->request('checkout/create/', array(
                     'account_id'          => $merchant->getAccountId(),
                     'short_description'   => "Purchasing ".$merchant->food." from ".$merchant->name.".",
-                    'type' 				  => 'goods',
-                    'amount'			  => $merchant->price,
-                    'mode'				  => 'iframe'
+                    'type'                => 'goods',
+                    'amount'              => $merchant->price,
+                    'payment_method_id'   => $credit_card_id
                     ));
-        return $response->checkout_uri;
     }
-}

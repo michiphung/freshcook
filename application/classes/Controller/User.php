@@ -61,7 +61,7 @@ class Controller_User extends Controller_Base {
 				$this->template->content->token = false;
 			}
 			else if (!($this->template->content->edit) && $chef->hasAccountId()) {
-				$this->template->content->wepay = "<a href=" . URL::base() . "user/buy/".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
+				$this->template->content->wepay = "<a href=" . URL::base() . "user/create_credit_card".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
 
 			}
 			else {
@@ -71,7 +71,7 @@ class Controller_User extends Controller_Base {
 		else {
 			$this->template->content->wepay = '';
 			if ($chef->hasAccountId()) {
-				$this->template->content->wepay = "<a href=". URL::base() . "user/buy/".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
+				$this->template->content->wepay = "<a href=". URL::base() . "user/create_credit_card".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
 			}
 			$this->template->content->token = true;
 			$this->template->content->edit = false;
@@ -106,7 +106,59 @@ class Controller_User extends Controller_Base {
 		$this->template->content->kitchen = $chef->kitchen;
 		$this->template->content->food = $chef->food;
 		$this->template->content->price = number_format($chef->price,2);
+		echo URL::base();
+
 	}
+
+	public function action_create_credit_card(){
+		$this->template->content = View::factory('user/create_credit_card');
+	}
+
+	public function action_charge_cc() {
+		// $validation = Validation::factory($this->request->post())
+		// 	->rule('user_name', 'not_empty')
+		// 	->rule('cc_number', 'credit_card')
+		// 	->rule('cvv', 'numeric')
+		// 	->rule('expiration_month', 'numeric')
+		// 	->rule('expiration_year', 'numeric')
+		// 	->rule('address1', 'not_empty')
+		// 	->rule('zip', 'numeric');
+
+		// if (!$validation->check()) {
+		// 	$error = $validation->errors('user');
+		// 	$this->template->content = "Your credit card registration was not valid";
+		// 	return;
+		// }
+
+		$credit_card_id = $_GET['credit_card_id'];
+		$id = $_GET['account_id'];
+		echo $credit_card_id;
+		echo URL::base();
+
+
+		//$id = Request::current()->param('id');
+		
+       $chef = ORM::factory('chef')->where('id', '=', $id)->find();
+
+		// if (!($credit_card_id == 0)) {
+		try {
+            Controller_Wepayapi::create_checkout($credit_card_id, $chef);
+        } catch (WePayPermissionException $e) {
+            $this->template->content = "There was an error: " . $e->getMessage();
+            return;
+        }
+
+        $this->template->content = View::factory('user/charge_cc');
+		$this->template->content->name = $chef->name;
+		$this->template->content->email = $chef->email;
+		$this->template->content->kitchen = $chef->kitchen;
+		$this->template->content->food = $chef->food;
+		$this->template->content->price = number_format($chef->price,2);
+		// }
+	}
+
+
+
 
 	public function action_register(){
 		$this->template->content = View::factory('user/register');
