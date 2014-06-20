@@ -149,6 +149,7 @@ class Controller_User extends Controller_Base {
         }
 
         $this->template->content = View::factory('user/charge_cc');
+        $this->template->content->return_uri = URL::base()."user/account/".$id;
 		$this->template->content->name = $chef->name;
 		$this->template->content->email = $chef->email;
 		$this->template->content->kitchen = $chef->kitchen;
