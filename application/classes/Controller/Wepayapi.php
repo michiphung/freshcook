@@ -81,3 +81,4 @@ class Controller_Wepayapi extends Controller_Base {
                     'payment_method_id'   => $credit_card_id
                     ));
     }
+}
