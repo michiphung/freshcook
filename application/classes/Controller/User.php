@@ -298,10 +298,10 @@ class Controller_User extends Controller_Base {
 			
 	}
 
-	public function register_sucess(){
+	public function register_success(){
 		$id = Request::current()->param('id');
-		$this->template->content = View::factory('user/register_sucess');
-		$this->template->content->return_uri = URL::base() . '/user/account/'.$id;
+		$this->template->content = View::factory('user/register_success');
+		$this->template->content->return_uri = URL::base() . '/user/';
 	}
 
 	public function action_logout(){
