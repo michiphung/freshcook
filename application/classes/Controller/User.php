@@ -61,7 +61,7 @@ class Controller_User extends Controller_Base {
 				$this->template->content->token = false;
 			}
 			else if (!($this->template->content->edit) && $chef->hasAccountId()) {
-				$this->template->content->wepay = "<a href=" . URL::base() . "user/create_credit_card".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
+				$this->template->content->wepay = "<a href=" . URL::base() . "user/create_credit_card/".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
 
 			}
 			else {
@@ -71,7 +71,7 @@ class Controller_User extends Controller_Base {
 		else {
 			$this->template->content->wepay = '';
 			if ($chef->hasAccountId()) {
-				$this->template->content->wepay = "<a href=". URL::base() . "user/create_credit_card".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
+				$this->template->content->wepay = "<a href=". URL::base() . "user/create_credit_card/".$id." class='btn btn-danger btn-large' id='buy-now-button'>Buy ".$chef->food." Now!</a>";
 			}
 			$this->template->content->token = true;
 			$this->template->content->edit = false;
