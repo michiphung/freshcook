@@ -157,58 +157,6 @@ class Controller_User extends Controller_Base {
 		$this->template->content = View::factory('user/user_register');
 	}
 
-	// public function action_user_complete_registation() {
-	// 	$validation = Validation::factory($this->request->post())
- //            ->rule('username', 'not_empty')
- //            ->rule('password', 'not_empty')
- //            ->rule('password', 'min_length', array(':value', 6))
- //            ->rule('email', 'not_empty')
- //            ->rule('email', 'email')
-
- //         if (!$validation->check()) {
- //            $errors = $validation->errors('user');
-	// 		$this->template->content = "Your registration was not valid!";
- //            return;
- //        }
-
- //        $user = ORM::factory('User');
-	// 	$user->username = $_POST['username'];
-	// 	$user->email = $_POST['email'];
-	// 	$user->password = $_POST['password'];
-
-	// 	 try {
- //            $user->save();
- //        } catch (ORM_Validation_Exception $e) {
- //            $this->template->content = "There was a problem creating your user: " . var_dump($e->errors());
- //            return;
- //        }
- //          // Create Buyer (basically farmer but without produce)
-	// 	$farmer = ORM::factory('farmer');
-	// 	$farmer->name = $_POST['username'];
-	// 	$farmer->email = $_POST['email'];
-	// 	$farmer->farm = NULL;
-	// 	$farmer->produce = NULL;
-	// 	$farmer->produce_price = NULL;
-
- //        // Add login role
- //        $user->add('roles', ORM::factory('Role', array('name' => 'login')));
-
- //        try {
- //            $farmer->save();
- //        } catch (ORM_Validation_Exception $e) {
- //            $this->template->content = "There was a problem creating your farmer: " . var_dump($e->errors());
- //        }
-
-	// 	$success = Auth::instance()->login($_POST['email'], $_POST['password']);
-
-	// 	if ($success) {
-	// 		HTTP::redirect('user');
-	// 	} else{
-	// 		$this->template->content = "There was an error!";
-	// 	}
-
-	// }
-
 	public function action_complete_registration() {
 
         $validation = Validation::factory($this->request->post())
@@ -296,7 +244,7 @@ class Controller_User extends Controller_Base {
 			
 	}
 
-	public function register_success(){
+	public function action_register_success(){
 		$id = Request::current()->param('id');
 		$this->template->content = View::factory('user/register_success');
 		$this->template->content->return_uri = URL::base() . '/user/';
