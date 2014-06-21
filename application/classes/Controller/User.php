@@ -118,8 +118,6 @@ class Controller_User extends Controller_Base {
 
 		$credit_card_id = $_GET['credit_card_id'];
 		$id = $_GET['account_id'];
-		echo $credit_card_id;
-		echo URL::base();
 
 
 		//$id = Request::current()->param('id');
