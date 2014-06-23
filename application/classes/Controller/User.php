@@ -245,7 +245,7 @@ class Controller_User extends Controller_Base {
 	}
 
 	public function action_register_success(){
-		$id = Request::current()->param('id');
+
 		$this->template->content = View::factory('user/register_success');
 		$this->template->content->return_uri = URL::base() . '/user/';
 	}
