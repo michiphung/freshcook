@@ -3,8 +3,8 @@
 return array(
 
         // Your Client ID
-	'client_id'       => '242',
+	'client_id'       => '136527',
 
         // Your Client Secret
-	'client_secret'   => 'b5df4504c9',
+	'client_secret'   => '4e01dbaabb',
 );
