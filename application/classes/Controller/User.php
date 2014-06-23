@@ -100,7 +100,6 @@ class Controller_User extends Controller_Base {
 
         $this->template->content = View::factory('user/buy');
 		$this->template->content->checkout_uri = $checkout_uri;
-		c
 		$this->template->content->name = $chef->name;
 		$this->template->content->email = $chef->email;
 		$this->template->content->kitchen = $chef->kitchen;

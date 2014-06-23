@@ -34,7 +34,7 @@ class Controller_Wepayapi extends Controller_Base {
                     'email'       => $chef->email,
                     'scope'         => "manage_accounts,collect_payments,view_user,preapprove_payments,manage_subscriptions,send_money",
                     'first_name'        => $chef->name,
-                    'last_name'         => $chef->name,
+                    'last_name'         => 'Test',
                     'original_ip'       => "74.125.224.84",
                     'original_device'   => "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.102 Safari/534.13",
                     'redirect_uri' => $base_url.'user/manage'
