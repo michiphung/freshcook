@@ -10,7 +10,6 @@ class Controller_Wepayapi extends Controller_Base {
             $API_VERSION = "2014-01-08";
             //WePay::useStaging('242', 'b5df4504c9', $API_VERSION);
             WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
-            c
             // $redirect_uri = $base_url . 'wepayapi';
             // $scope = WePay::$all_scopes;
 
