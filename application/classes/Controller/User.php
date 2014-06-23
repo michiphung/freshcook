@@ -246,7 +246,7 @@ class Controller_User extends Controller_Base {
 	public function action_register_success(){
 
 		$this->template->content = View::factory('user/register_success');
-		$this->template->content->return_uri = URL::base() . '/user/';
+		$this->template->content->return_uri = URL::base() . '/user/account/';
 	}
 
 	public function action_logout(){
