@@ -49,13 +49,6 @@ class Controller_User extends Controller_Base {
 				$this->template->content->token = true;
 			}
 
-			// $wepay = new WePay('DEV_a2a51fc30893a990734d16d9595f15d44a1fa2b6d83de25713d6df7c4026c06d');
-
-			// $response = $wepay->request('account/', array(
-			// 	'account_id' => 716888732
-			// 	));
-			// echo $response->state;
-
 			if (!($chef->hasAccessToken())) {
 				$this->template->content->wepay = "<b>Please confirm account to manage your money: <p><a class='wepay-widget-button wepay-blue' href=" . URL::base() . "wepayapi>Click here to create your FreshCook account</a>";
 				$this->template->content->token = false;
@@ -84,31 +77,6 @@ class Controller_User extends Controller_Base {
 		$this->template->content->base = URL::base($this->request);
 	}
 
-	public function action_buy() {
-		$id = Request::current()->param('id');
-		if (!isset($id)) {
-			HTTP::redirect('/');
-		}
-        $chef = ORM::factory('chef')->where('id', '=', $id)->find();
-
-        try {
-            $checkout_uri = Controller_Wepayapi::create_checkout($chef);
-        } catch (WePayPermissionException $e) {
-            $this->template->content = "There was an error: " . $e->getMessage();
-            return;
-        }
-
-        $this->template->content = View::factory('user/buy');
-		$this->template->content->checkout_uri = $checkout_uri;
-		$this->template->content->name = $chef->name;
-		$this->template->content->email = $chef->email;
-		$this->template->content->kitchen = $chef->kitchen;
-		$this->template->content->food = $chef->food;
-		$this->template->content->price = number_format($chef->price,2);
-		echo URL::base();
-
-	}
-
 	public function action_create_credit_card(){
 		$this->template->content = View::factory('user/create_credit_card');
 	}
@@ -118,12 +86,9 @@ class Controller_User extends Controller_Base {
 		$credit_card_id = $_GET['credit_card_id'];
 		$id = $_GET['account_id'];
 
-
-		//$id = Request::current()->param('id');
 		
        $chef = ORM::factory('chef')->where('id', '=', $id)->find();
 
-		// if (!($credit_card_id == 0)) {
 		try {
             Controller_Wepayapi::create_checkout($credit_card_id, $chef);
         } catch (WePayPermissionException $e) {
@@ -138,11 +103,7 @@ class Controller_User extends Controller_Base {
 		$this->template->content->kitchen = $chef->kitchen;
 		$this->template->content->food = $chef->food;
 		$this->template->content->price = number_format($chef->price,2);
-		// }
 	}
-
-
-
 
 	public function action_register(){
 		$this->template->content = View::factory('user/register');
@@ -150,10 +111,6 @@ class Controller_User extends Controller_Base {
 
 	public function action_manage() {
 		$this->template->content = View::factory('user/manage');
-	}
-
-	public function action_buyer_register() {
-		$this->template->content = View::factory('user/user_register');
 	}
 
 	public function action_complete_registration() {

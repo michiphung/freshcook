@@ -12,8 +12,10 @@
     $API_VERSION = "2014-01-08";
     $base_url = URL::site(NULL, TRUE);
     WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
+
 	$user = Auth::instance()->get_user();
 	$chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
+	
 	$wepay = new WePay($chef->wepay_access_token);
     $response = $wepay->request('account/get_update_uri/', array(
             'account_id' => $chef->wepay_account_id,

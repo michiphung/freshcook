@@ -11,7 +11,6 @@
             <ul class="nav pull-right">
               <li class="active"><a href="<? echo url::base().'user/register' ?>">Register</a></li>
               <li><a href="<? echo url::base().'user/login' ?>">Login</a></li>
-              <!-- <li><a href="<? echo url::base(). 'user/register_buyer' ?>">RegisterBuyer</a></li> -->
             </ul>
           </div>
         </div>
