@@ -17,6 +17,7 @@
 	$chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
 	
 	$wepay = new WePay($chef->wepay_access_token);
+	$wepay_link = 'https://stage.wepay.com/account/' . $chef->wepay_account_id;
     $response = $wepay->request('account/get_update_uri/', array(
             'account_id' => $chef->wepay_account_id,
             'mode' => 'iframe',
@@ -26,6 +27,10 @@
         ?>
         <body>
         	<center>
+
+			<a href="<?=$wepay_link?>">View your payments account</a>        		
+        	<br />
+
         	<div id="kyc_div"><div>
 				<script type="text/javascript" src="https://www.wepay.com/min/js/iframe.wepay.js">
 				</script>
