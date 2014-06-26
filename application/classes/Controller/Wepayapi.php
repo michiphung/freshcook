@@ -55,7 +55,8 @@ class Controller_Wepayapi extends Controller_Base {
                     'short_description'   => "Purchasing ".$merchant->food." from ".$merchant->name.".",
                     'type'                => 'goods',
                     'amount'              => $merchant->price,
-                    'payment_method_id'   => $credit_card_id
+                    'payment_method_id'   => $credit_card_id,
+                    'payment_method_type' => 'credit_card'
                     ));
     }
 }
