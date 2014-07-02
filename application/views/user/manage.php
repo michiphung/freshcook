@@ -8,6 +8,7 @@
 </head>	
         <body>
         	<center>
+        	<a href="<?=$wepay_link?>">View your payments account</a>
         	<div id="kyc_div"><div>
 				<script type="text/javascript" src="https://www.wepay.com/min/js/iframe.wepay.js">
 				</script>

@@ -127,6 +127,7 @@ class Controller_User extends Controller_Base {
         }
         $this->template->content = View::factory('user/manage');
         $this->template->content->manage_uri = $manage_uri;
+        $this->template->content->wepay_link = 'https://stage.wepay.com/account/' . $chef->wepay_account_id;
      } 
 
 	public function action_complete_registration() {
