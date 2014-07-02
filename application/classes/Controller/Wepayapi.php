@@ -57,8 +57,7 @@ class Controller_Wepayapi extends Controller_Base {
 
     public static function create_checkout($credit_card_id, $merchant) {
         $config = Kohana::$config->load('wepay');
-        $base_url = URL::site(NULL, TRUE);
-        
+
         $wepay = new WePay($merchant->getAccessToken());
         $response = $wepay->request('checkout/create/', array(
                     'account_id'          => $merchant->getAccountId(),
@@ -66,7 +65,7 @@ class Controller_Wepayapi extends Controller_Base {
                     'type'                => 'goods',
                     'amount'              => $merchant->price,
                     'payment_method_id'   => $credit_card_id,
-                    'payment_method_type' => 'credit_card',
+                    'payment_method_type' => 'credit_card'
                     ));
     }
 }
