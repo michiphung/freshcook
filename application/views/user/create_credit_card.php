@@ -1,20 +1,13 @@
 <h1> Thank you for registering! To proceed, please enter your credit card information </h1>
 <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js">
 </script>
-<?php 
-    $config = Kohana::$config->load('wepay');
-    // set API Version. Change this to the API Version you want to use.
-    $API_VERSION = "2014-01-08";
-    //WePay::useStaging('242', 'b5df4504c9', $API_VERSION);
-    WePay::useStaging($config->get('client_id'), $config->get('client_secret'), $API_VERSION);
-    ?>
 
 <script type="text/javascript">
     WePay.set_endpoint("stage"); // change to "production" when live
 
 function chargeCard(){
         var response = WePay.credit_card.create( {
-            "client_id":<?=$config->get('client_id')?>,
+            "client_id":<?=Kohana::$config->load('wepay.client_id');?>,
             "user_name":document.getElementById('name').value,
             "email":document.getElementById('email').value,
             "cc_number":document.getElementById('cc-number').value,
