@@ -85,9 +85,9 @@ class Controller_User extends Controller_Base {
 
 		$credit_card_id = $_GET['credit_card_id'];
 		$id = $_GET['account_id'];
-
+		$base_url = URL::site(NULL, TRUE);
 		
-       $chef = ORM::factory('chef')->where('id', '=', $id)->find();
+       	$chef = ORM::factory('chef')->where('id', '=', $id)->find();
 
 		try {
             Controller_Wepayapi::create_checkout($credit_card_id, $chef);
@@ -96,14 +96,21 @@ class Controller_User extends Controller_Base {
             return;
         }
 
+        HTTP::redirect($base_url."user/payment_success/?account_id=" . $chef->getId());
+    }
+
+    public function action_payment_success() { 
+    	$id = $_GET['account_id'];
+    	$chef = ORM::factory('chef')->where('id', '=', $id)->find();
+
         $this->template->content = View::factory('user/charge_cc');
-        $this->template->content->return_uri = URL::base()."user/account/".$id;
 		$this->template->content->name = $chef->name;
 		$this->template->content->email = $chef->email;
 		$this->template->content->kitchen = $chef->kitchen;
 		$this->template->content->food = $chef->food;
 		$this->template->content->price = number_format($chef->price,2);
 	}
+
 
 	public function action_register(){
 		$this->template->content = View::factory('user/register');
