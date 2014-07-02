@@ -117,8 +117,17 @@ class Controller_User extends Controller_Base {
 	}
 
 	public function action_manage() {
-		$this->template->content = View::factory('user/manage');
-	}
+		$user = Auth::instance()->get_user();
+        $chef = ORM::factory('chef')->where('email', '=', $user->email)->find();
+        try  {
+        	$manage_uri = Controller_Wepayapi::create_manage($chef->wepay_account_id);
+        } catch (WePayPermissionException $e) {
+        	$this->template->content = "There was an error" . $e->getMessage();
+        	return;
+        }
+        $this->template->content = View::factory('user/manage');
+        $this->template->content->manage_uri = $manage_uri;
+     } 
 
 	public function action_complete_registration() {
 
