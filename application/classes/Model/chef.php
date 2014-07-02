@@ -26,7 +26,6 @@ class Model_chef extends ORM {
         }
         $this->saveAccountId($response->account_id);
         $this->saveAccessToken($access_token); 
-        echo $response->state;
         return true;
 
     }
