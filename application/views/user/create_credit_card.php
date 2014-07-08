@@ -2,6 +2,8 @@
 <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js">
 </script>
 
+<script src="jquery-1.11.1.min.js"></script>
+
 <script type="text/javascript">
     WePay.set_endpoint("stage"); // change to "production" when live
 
