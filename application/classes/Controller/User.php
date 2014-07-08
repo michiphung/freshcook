@@ -95,8 +95,6 @@ class Controller_User extends Controller_Base {
             $this->template->content = "There was an error: " . $e->getMessage();
             return;
         }
-
-        HTTP::redirect($base_url."user/payment_success/?account_id=" . $chef->getId());
     }
 
     public function action_payment_success() { 

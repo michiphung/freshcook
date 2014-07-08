@@ -24,7 +24,7 @@ function chargeCard(){
                 // handle error response
             } else {
             	var account_id = document.getElementById("account_id").value;
-            	window.location.href = '<?=url::base()?>/user/charge_cc/' + '?account_id=' + account_id + '&credit_card_id=' + data.credit_card_id;
+            	$.post("/user/charge_cc/", {account_id : account_id , credit_card_id : credit_card_id}, window.location.href = '/user/payment_success' + '?account_id=' + account_id);
 
                 // call your own app's API to save the token inside the data;
                 // show a success page
