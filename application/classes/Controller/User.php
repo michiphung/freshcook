@@ -83,10 +83,8 @@ class Controller_User extends Controller_Base {
 
 	public function action_charge_cc() {
 
-		$credit_card_id = $_GET['credit_card_id'];
-		$id = $_GET['account_id'];
-		$base_url = URL::site(NULL, TRUE);
-		
+		$credit_card_id = $_POST['credit_card_id'];
+		$id = $_POST['account_id'];		
        	$chef = ORM::factory('chef')->where('id', '=', $id)->find();
 
 		try {
